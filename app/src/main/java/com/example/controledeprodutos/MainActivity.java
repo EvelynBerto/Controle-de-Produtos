@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -55,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
     private void ouvinteCliques() {
         ibAdd.setOnClickListener(view -> {
-            Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, FormProdutoActivity.class));
+            /*quando eu clicar no botao add tenho que abrir a tela form_produto, e para isso
+             crio o startActivity, pois criei uma nova activity, eu instancio um intent e passo da
+             onde quero sair, this, para onde quero ir que é a activity FormProdutoActivity*/
         });
 
         ibVerMais.setOnClickListener(view -> {
