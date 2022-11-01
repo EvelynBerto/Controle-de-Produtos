@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         //essa opção da ao nosso app o poder de ter esse menu em versoes mais antigas do android
 
         ouvinteCliques();
-        carregaLista();
+        //carregaLista();
         configRecyclerView();
     }
 
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
     }
 
-    private void carregaLista(){
+  /*  private void carregaLista(){
 
         Produto produto1 = new Produto();
         produto1.setNome("Monitor LG 34");
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         produtoList.add(produto6);
 
     }
-
+*/
     @Override
     public void onClickListener(Produto produto) {
         Toast.makeText(this, produto.getNome(), Toast.LENGTH_SHORT).show();
