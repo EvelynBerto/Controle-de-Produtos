@@ -56,7 +56,6 @@ public class ProdutoDAO {
             @SuppressLint("Range") double valor = c.getDouble(c.getColumnIndex("valor"));
 
             Produto produto = new Produto();
-            produto.setId(id);
         }
 
         return produtoList;
