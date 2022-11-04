@@ -24,19 +24,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterProduto.OnClick {
 
-
     private ImageButton ibAdd;
     private ImageButton ibVerMais;
     private ProdutoDAO produtoDAO;
 
 
-    //private List<Produto> produtoList = new ArrayList<>();
+    private List<Produto> produtoList = new ArrayList<>();
     /*Criei uma lista do tipo List<Classe que criei contendo as infos dos produtos> List é da classe
     ArrayList<> e instancio*/
     private SwipeableRecyclerView rvProdutos;
     //declarei uma variavel do tipo SwipeRecyclerView para conseguir acessar o swipe do meu xml
     private AdapterProduto adapterProduto;
     //criei um Adapter para fazer a ponte das infos com a interface do usuário, declarei.
+
 
 
     @Override
@@ -49,8 +49,11 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
 
         produtoDAO = new ProdutoDAO(this);
+        produtoList = produtoDAO.getListProdutos();
         ouvinteCliques();
+
         //carregaLista();
+
         configRecyclerView();
         //essa opção da ao nosso app o poder de ter esse menu em versoes mais antigas do android
     }
@@ -86,14 +89,16 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         rvProdutos.setLayoutManager(new LinearLayoutManager(this));
         rvProdutos.setHasFixedSize(true);
         //deixamos o recyclerview com desempenho melhor
-        adapterProduto = new AdapterProduto(produtoDAO.getListProdutos(), this);
+        adapterProduto = new AdapterProduto(produtoList, this);
         //instanciei o AdapterProdutuo
         rvProdutos.setAdapter(adapterProduto);
 
         rvProdutos.setListener(new SwipeLeftRightCallback.Listener() {
             @Override
             public void onSwipedLeft(int position) {
-                produtoDAO.getListProdutos().remove(position);
+                Produto produto = produtoList.get(position);
+                produtoDAO.deleteProduto(produto);
+                produtoList.remove()
                 adapterProduto.notifyItemRangeRemoved(position, 1);
             }
 

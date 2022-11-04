@@ -10,6 +10,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+//links úteis: https://androiddevbr.wordpress.com/2013/02/19/sqlite-banco-de-dados-no-android/
+
 public class ProdutoDAO {
     /*DAO - PADRÃO USADO PARA A CLASSE QUE FAZ A PERSISTENCIA NO BANCO DE DADOS, SEPARANDO AS REGRAS
     DE NEGOCIO DO APP, TAMBÉM AS REGRAS DE ACESSO DO BANCO DE DADOS*/
@@ -99,8 +101,9 @@ public class ProdutoDAO {
 
         try {
             String[] args = {String.valueOf(produto.getId())};
-            String where = "id=?";
-            write.delete(DBHelper.TB_PRODUTO, where, args);
+            /*String where = "id=?";
+            write.delete(DBHelper.TB_PRODUTO, where, args);*/
+            write.delete(DBHelper.TB_PRODUTO, "id=?", args);
         }catch (Exception e){
             Log.i("Error", "Erro ao deletar produto " + e.getMessage());
         }
