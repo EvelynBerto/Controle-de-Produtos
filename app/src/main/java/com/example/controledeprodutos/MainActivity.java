@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
     private ImageButton ibAdd;
     private ImageButton ibVerMais;
+    private ProdutoDAO produtoDAO;
 
 
-    private List<Produto> produtoList = new ArrayList<>();
+    //private List<Produto> produtoList = new ArrayList<>();
     /*Criei uma lista do tipo List<Classe que criei contendo as infos dos produtos> List é da classe
     ArrayList<> e instancio*/
     private SwipeableRecyclerView rvProdutos;
@@ -46,11 +47,12 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         ibVerMais = findViewById(R.id.more);
         rvProdutos = findViewById(R.id.rv_produtos);
 
-        //essa opção da ao nosso app o poder de ter esse menu em versoes mais antigas do android
 
+        produtoDAO = new ProdutoDAO(this);
         ouvinteCliques();
         //carregaLista();
         configRecyclerView();
+        //essa opção da ao nosso app o poder de ter esse menu em versoes mais antigas do android
     }
 
 
@@ -84,14 +86,14 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         rvProdutos.setLayoutManager(new LinearLayoutManager(this));
         rvProdutos.setHasFixedSize(true);
         //deixamos o recyclerview com desempenho melhor
-        adapterProduto = new AdapterProduto(produtoList, this);
+        adapterProduto = new AdapterProduto(produtoDAO.getListProdutos(), this);
         //instanciei o AdapterProdutuo
         rvProdutos.setAdapter(adapterProduto);
 
         rvProdutos.setListener(new SwipeLeftRightCallback.Listener() {
             @Override
             public void onSwipedLeft(int position) {
-                produtoList.remove(position);
+                produtoDAO.getListProdutos().remove(position);
                 adapterProduto.notifyItemRangeRemoved(position, 1);
             }
 
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
     }
 
-  /*  private void carregaLista(){
+      /*private void carregaLista(){
 
         Produto produto1 = new Produto();
         produto1.setNome("Monitor LG 34");
@@ -146,8 +148,12 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 */
     @Override
     public void onClickListener(Produto produto) {
-        Toast.makeText(this, produto.getNome(), Toast.LENGTH_SHORT).show();
-    }
+        Intent intent = new Intent(this, FormProdutoActivity.class);
+        /*Abrir a classe e enviar o objeto de uma tela para outra, vou utilizar a mesma tela de salvar
+        //para editar o produto*/
+        intent.putExtra("produto", produto);
+        startActivity(intent);
 
+    }
 
 }
