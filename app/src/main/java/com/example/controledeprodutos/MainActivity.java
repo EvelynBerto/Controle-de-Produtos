@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tsuryo.swipeablerv.SwipeLeftRightCallback;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
     private ImageButton ibAdd;
     private ImageButton ibVerMais;
     private ProdutoDAO produtoDAO;
+    private TextView text_info;
 
 
     private List<Produto> produtoList = new ArrayList<>();
@@ -46,18 +49,24 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         ibAdd = findViewById(R.id.add);
         ibVerMais = findViewById(R.id.more);
         rvProdutos = findViewById(R.id.rv_produtos);
+        text_info = findViewById(R.id.tv_info);
 
 
         produtoDAO = new ProdutoDAO(this);
         produtoList = produtoDAO.getListProdutos();
         ouvinteCliques();
 
-        //carregaLista();
-
         configRecyclerView();
         //essa opção da ao nosso app o poder de ter esse menu em versoes mais antigas do android
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    /*quando clico em salvar chama-se o método onStart e no start limpa a lista e recupera os produtos
+     novamente, atualizando a lista*/
+        configRecyclerView();
+    }
 
     private void ouvinteCliques() {
         ibAdd.setOnClickListener(view -> {
@@ -85,6 +94,12 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
     }
 
     private void configRecyclerView(){
+
+        produtoList.clear();
+        produtoList = produtoDAO.getListProdutos();
+
+        verificaQtdLista();
+        
         //vou passar o padrão do meu layout
         rvProdutos.setLayoutManager(new LinearLayoutManager(this));
         rvProdutos.setHasFixedSize(true);
@@ -100,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
                 produtoDAO.deleteProduto(produto);
                 produtoList.remove(produto);
                 adapterProduto.notifyItemRangeRemoved(position, 1);
+                verificaQtdLista ();
             }
 
             @Override
@@ -107,50 +123,17 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
             }
         });
-
     }
 
-      /*private void carregaLista(){
+    private void verificaQtdLista(){
 
-        Produto produto1 = new Produto();
-        produto1.setNome("Monitor LG 34");
-        produto1.setEstoque(45);
-        produto1.setValor(1349.99);
-
-        Produto produto2 = new Produto();
-        produto2.setNome("Caixa de Som C3 Tech");
-        produto2.setEstoque(15);
-        produto2.setValor(149.99);
-
-        Produto produto3 = new Produto();
-        produto3.setNome("Microfone Blue yeti");
-        produto3.setEstoque(38);
-        produto3.setValor(1699.99);
-
-        Produto produto4 = new Produto();
-        produto4.setNome("Gabinete NZXT H440");
-        produto4.setEstoque(15);
-        produto4.setValor(979.99);
-
-        Produto produto5 = new Produto();
-        produto5.setNome("Placa Mãe Asus");
-        produto5.setEstoque(60);
-        produto5.setValor(1199.99);
-
-        Produto produto6 = new Produto();
-        produto6.setNome("Memória Corsair 16GB");
-        produto6.setEstoque(44);
-        produto6.setValor(599.99);
-
-        produtoList.add(produto1);
-        produtoList.add(produto2);
-        produtoList.add(produto3);
-        produtoList.add(produto4);
-        produtoList.add(produto5);
-        produtoList.add(produto6);
-
+        if (produtoList.size() == 0){
+            text_info.setVisibility(View.VISIBLE);
+        }else {
+            text_info.setVisibility(View.GONE);
+        }
     }
-*/
+
     @Override
     public void onClickListener(Produto produto) {
         Intent intent = new Intent(this, FormProdutoActivity.class);
