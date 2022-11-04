@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         rvProdutos = findViewById(R.id.rv_produtos);
         text_info = findViewById(R.id.tv_info);
 
-
         produtoDAO = new ProdutoDAO(this);
         produtoList = produtoDAO.getListProdutos();
         ouvinteCliques();
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         produtoList = produtoDAO.getListProdutos();
 
         verificaQtdLista();
-        
+
         //vou passar o padrão do meu layout
         rvProdutos.setLayoutManager(new LinearLayoutManager(this));
         rvProdutos.setHasFixedSize(true);
