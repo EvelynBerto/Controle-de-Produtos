@@ -42,11 +42,11 @@ public class ProdutoDAO {
     }
 
     public List<Produto> getListProdutos() {
-        /*Método para recuperar os produtos do banco de dados, o retorno dele é uma lista de produtos
-        dentro criei a lista e instanciei, passando uma string sql e meu comando para recuperar as infos
+        /*Método para recuperar os produtos do banco de dados, o retorno dele é uma lista de produtos,
+        dentro criei a lista e instanciei, passando uma string sql e meu comando para recuperar as infos,
         meu cursor c que percorre todo meu banco de dados passando o read que é o objeto de leitura
-        não temos argumentos(condição) então ele recupera todos
-         */
+        não temos argumentos(condição) então ele recupera todos*/
+
         List<Produto> produtoList = new ArrayList<>();
 
         String sql = " SELECT * FROM " + DBHelper.TB_PRODUTO + ";";
@@ -93,6 +93,18 @@ public class ProdutoDAO {
         }catch (Exception e){
             Log.i("Error", "Erro ao atualizar produto " + e.getMessage());
         }
+    }
+
+    public void deleteProduto(Produto produto){
+
+        try {
+            String[] args = {String.valueOf(produto.getId())};
+            String where = "id=?";
+            write.delete(DBHelper.TB_PRODUTO, where, args);
+        }catch (Exception e){
+            Log.i("Error", "Erro ao deletar produto " + e.getMessage());
+        }
+
     }
 
 }
