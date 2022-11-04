@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
             public void onSwipedLeft(int position) {
                 Produto produto = produtoList.get(position);
                 produtoDAO.deleteProduto(produto);
-                produtoList.remove()
+                produtoList.remove(produto);
                 adapterProduto.notifyItemRangeRemoved(position, 1);
             }
 
