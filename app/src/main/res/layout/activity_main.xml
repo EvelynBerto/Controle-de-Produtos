@@ -22,7 +22,7 @@
        android:layout_height="wrap_content"
        android:textStyle="bold"
        android:textSize="18sp"
-       android:text="Nenhum Produto Cadastrado"
+       android:text="Cadastre um novo produto"
        android:textColor="@color/white"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
