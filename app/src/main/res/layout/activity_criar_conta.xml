@@ -14,66 +14,92 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/tv_nome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nome"
-            android:textColor="@color/white" />
-
-        <EditText
-            android:id="@+id/et_nome"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_edit"
-            android:hint="Nome completo"
-            android:padding="16dp" />
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="E-mail"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/tv_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_edit"
-            android:hint="Seu email"
-            android:inputType="textEmailAddress"
-            android:padding="16dp" />
+            <EditText
+                android:id="@+id/et_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit"
+                android:hint="Nome completo"
+                android:padding="16dp" />
 
-        <TextView
-            android:id="@+id/tv_senha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Senha"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="E-mail"
+                android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/et_senha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_edit"
-            android:hint="Sua senha"
-            android:inputType="textPassword"
-            android:padding="16dp" />
-        
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit"
+                android:hint="Seu email"
+                android:inputType="textEmailAddress"
+                android:padding="16dp" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Senha"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/et_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit"
+                android:hint="Sua senha"
+                android:inputType="textPassword"
+                android:padding="16dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/white"
+                android:onClick="validaDados"
+                android:text="Criar conta"
+                android:background="@drawable/bg_edit"
+                android:textAllCaps="false"/>
+
+            <ProgressBar
+                android:id="@+id/pb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:indeterminateTint="@android:color/white"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

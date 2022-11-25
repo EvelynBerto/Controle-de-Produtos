@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ControleDeProdutos"
         tools:targetApi="31">
         <activity
-            android:name=".CriarContaActivity"
+            android:name=".autenticacao.CriarContaActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -33,7 +33,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".activity.FormProdutoActivity"
+            android:name=".activity.FormularioProdutoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
