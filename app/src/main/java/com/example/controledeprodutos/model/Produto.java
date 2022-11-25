@@ -1,4 +1,4 @@
-package com.example.controledeprodutos;
+package com.example.controledeprodutos.model;
 
 import java.io.Serializable;
 

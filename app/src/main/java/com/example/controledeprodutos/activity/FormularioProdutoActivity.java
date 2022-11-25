@@ -1,14 +1,17 @@
-package com.example.controledeprodutos;
+package com.example.controledeprodutos.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class FormProdutoActivity extends AppCompatActivity {
+import com.example.controledeprodutos.model.Produto;
+import com.example.controledeprodutos.ProdutoDAO;
+import com.example.controledeprodutos.R;
+
+public class FormularioProdutoActivity extends AppCompatActivity {
 
     private EditText edit_produto;
     private EditText edit_quantidade;

@@ -1,23 +1,20 @@
-package com.example.controledeprodutos;
+package com.example.controledeprodutos.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.controledeprodutos.adapter.AdapterProduto;
+import com.example.controledeprodutos.model.Produto;
+import com.example.controledeprodutos.ProdutoDAO;
+import com.example.controledeprodutos.R;
 import com.tsuryo.swipeablerv.SwipeLeftRightCallback;
 import com.tsuryo.swipeablerv.SwipeableRecyclerView;
 
@@ -69,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
     private void ouvinteCliques() {
         ibAdd.setOnClickListener(view -> {
-            startActivity(new Intent(this, FormProdutoActivity.class));
+            startActivity(new Intent(this, FormularioProdutoActivity.class));
             /*quando eu clicar no botao add tenho que abrir a tela form_produto, e para isso
              crio o startActivity, pois criei uma nova activity, eu instancio um intent e passo da
              onde quero sair, this, para onde quero ir que é a activity FormProdutoActivity*/
@@ -135,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
     @Override
     public void onClickListener(Produto produto) {
-        Intent intent = new Intent(this, FormProdutoActivity.class);
+        Intent intent = new Intent(this, FormularioProdutoActivity.class);
         /*Abrir a classe e enviar o objeto de uma tela para outra, vou utilizar a mesma tela de salvar
         //para editar o produto*/
         intent.putExtra("produto", produto);
